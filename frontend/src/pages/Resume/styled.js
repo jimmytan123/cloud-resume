@@ -33,11 +33,9 @@ export const Wrapper = styled.div`
       color: var(--white);
       padding: 0.1rem 0.2rem;
       border-radius: 0.2rem;
+      min-width: 200px;
+      max-width: 100%;
     }
-
-    /* .count__num {
-      font-size: 1.15rem;
-    } */
 
     svg {
       display: inline-block;

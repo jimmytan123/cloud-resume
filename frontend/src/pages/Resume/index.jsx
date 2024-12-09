@@ -3,16 +3,45 @@ import { MdOutlineMail } from 'react-icons/md';
 import { MdLocationPin } from 'react-icons/md';
 import { FaExternalLinkSquareAlt } from 'react-icons/fa';
 import { IoMdCloud } from 'react-icons/io';
+import { useQuery } from '@tanstack/react-query';
 
 const Resume = () => {
+  const { isPending, error, data } = useQuery({
+    queryKey: ['viewCount'],
+    queryFn: async () => {
+      const response = await fetch(
+        'https://bbmkuv7n53.execute-api.us-west-2.amazonaws.com/dev/resume',
+        { method: 'POST' }
+      );
+      const data = await response.json();
+
+      return data;
+    },
+  });
+
+  if (error) {
+    console.log(error);
+  }
+
+  const viewCount = data?.view_count;
+
   return (
     <Wrapper>
       <header className="heading">
         <h1>Jimmy(Zhixi) Tan</h1>
         <p className="count small-text">
-          Hello! This
-          <IoMdCloud />
-          resume has been viewed: <b className="count__num">1</b> times.
+          {isPending && 'Loading'}
+          {error && error.message}
+          {!isPending && !error && (
+            <>
+              Hello! This
+              <IoMdCloud />
+              resume has been viewed: <b className="count__num">
+                {viewCount}
+              </b>{' '}
+              times.
+            </>
+          )}
         </p>
       </header>
       <div className="profile">
