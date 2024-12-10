@@ -20,7 +20,7 @@ const Resume = () => {
   });
 
   if (error) {
-    console.log(error);
+    console.log('Error in API calls:', error);
   }
 
   const viewCount = data?.view_count;
@@ -29,20 +29,23 @@ const Resume = () => {
     <Wrapper>
       <header className="heading">
         <h1>Jimmy(Zhixi) Tan</h1>
-        <p className="count small-text">
-          {isPending && 'Loading'}
-          {error && error.message}
-          {!isPending && !error && (
-            <>
-              Hello! This
-              <IoMdCloud />
-              resume has been viewed: <b className="count__num">
-                {viewCount}
-              </b>{' '}
-              times.
-            </>
-          )}
-        </p>
+        {isPending && <p className="loading-message small-text">Loading</p>}
+        {error && (
+          <p className="error-message small-text">
+            Error in fetching view counts
+          </p>
+        )}
+        {!isPending && !error && (
+          <p className="count small-text">
+            Hello! This
+            <IoMdCloud />
+            resume has been viewed:{' '}
+            <b className="count__num" data-testid="view_count">
+              {viewCount}
+            </b>{' '}
+            times.
+          </p>
+        )}
       </header>
       <div className="profile">
         <p>
