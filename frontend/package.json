@@ -9,7 +9,6 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "cy:open": "cypress open",
-    "e2e:chrome": "cypress run --browser chrome",
     "e2e:dev:chrome": "cypress run --env BASE_URL=http://localhost:5173 --browser chrome",
     "e2e:prod:chrome": "cypress run --env BASE_URL=https://resume.jimtan.ca --browser chrome"
   },
