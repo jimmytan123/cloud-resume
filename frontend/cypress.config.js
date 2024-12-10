@@ -5,7 +5,7 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl: 'http://localhost:5173', // Local Front End URL
+    // baseUrl: 'http://localhost:5173', // Local Front End URL
   },
   env: {
     API_URL:
