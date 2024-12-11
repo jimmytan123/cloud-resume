@@ -28,8 +28,8 @@ const Resume = () => {
   return (
     <Wrapper>
       <header className="heading">
-        <h1>Jimmy(Zhixi) Tan</h1>
-        {isPending && <p className="loading-message small-text">testing...</p>}
+        <h1>Name</h1>
+        {isPending && <p className="loading-message small-text">Loading</p>}
         {error && (
           <p className="error-message small-text">
             Error in fetching view counts
