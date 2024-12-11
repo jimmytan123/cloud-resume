@@ -28,7 +28,7 @@ const Resume = () => {
   return (
     <Wrapper>
       <header className="heading">
-        <h1>Name</h1>
+        <h1>Jimmy(Zhixi) Tan</h1>
         {isPending && <p className="loading-message small-text">Loading</p>}
         {error && (
           <p className="error-message small-text">
