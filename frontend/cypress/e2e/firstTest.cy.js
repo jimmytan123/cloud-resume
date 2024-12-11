@@ -1,8 +1,6 @@
-describe('Cloud resume e2e test', () => {
+describe('Cloud Resume E2E Test', () => {
   it('renders the default elements on the screen', () => {
-    const baseUrl = Cypress.env('BASE_URL') || 'http://localhost:5173';
-
-    cy.visit(baseUrl);
+    cy.visit('/');
 
     cy.get('h1').should('exist').contains('Jimmy(Zhixi) Tan');
   });
@@ -14,9 +12,7 @@ describe('Cloud resume e2e test', () => {
       body: { view_count: 1024 },
     }).as('updateCount'); // and assign an alias
 
-    const baseUrl = Cypress.env('BASE_URL') || 'http://localhost:5173';
-
-    cy.visit(baseUrl);
+    cy.visit('/');
 
     // Wait for the API call to complete
     cy.wait('@updateCount');
@@ -31,9 +27,7 @@ describe('Cloud resume e2e test', () => {
       statusCode: 500,
     }).as('apiError'); // and assign an alias
 
-    const baseUrl = Cypress.env('BASE_URL') || 'http://localhost:5173';
-
-    cy.visit(baseUrl);
+    cy.visit('/');
 
     // Wait for the API call to complete
     cy.wait('@apiError');
@@ -57,9 +51,7 @@ describe('Cloud resume e2e test', () => {
       });
     }).as('updateCount');
 
-    const baseUrl = Cypress.env('BASE_URL') || 'http://localhost:5173';
-
-    cy.visit(baseUrl);
+    cy.visit('/');
 
     // Assert that the loading message shows up
     cy.get('p.loading-message').should('exist').contains('Loading');

@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "private": true,
+  "author": "Jimmy(Zhixi) Tan",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -8,9 +9,10 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "cy:open": "cypress open",
-    "e2e:dev:chrome": "cypress run --env BASE_URL=http://localhost:5173 --browser chrome",
-    "e2e:prod:chrome": "cypress run --env BASE_URL=https://resume.jimtan.ca --browser chrome"
+    "cy:open:dev": "cypress open --config baseUrl=http://localhost:5173 --browser chrome",
+    "cy:open:prod": "cypress open --config baseUrl=https://resume.jimtan.ca --browser chrome",
+    "e2e:dev": "cypress run --config baseUrl=http://localhost:5173 --browser chrome",
+    "e2e:prod": "cypress run --config baseUrl=https://resume.jimtan.ca --browser chrome"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.3",
