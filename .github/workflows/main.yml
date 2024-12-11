@@ -5,7 +5,6 @@ on:
     branches: ['master']
 
 jobs:
-  # Job 1
   build-deploy:
     name: Build code and deploy
     runs-on: ubuntu-latest
@@ -38,7 +37,6 @@ jobs:
         working-directory: ./frontend #Explicitly set the working directory to /frontend for this step.
         run: aws s3 sync ./dist s3://jt-resume-front-end --delete --follow-symlinks --acl private --exclude '.git/*'
 
-  # Job 2
   cloudfront-invalidation:
     name: Invalidate CloudFront once deploy
     needs: build-deploy #Identify 'build-deploy' job that must complete successfully before this job will run
@@ -54,8 +52,7 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-  # Job 3
-   cypress-run:
+  cypress-run:
     name: Perform E2E test against the deployed website
     needs: cloudfront-invalidation #Identify 'cloudfront-invalidation' job that must complete successfully before this job will run
     runs-on: ubuntu-latest
@@ -63,11 +60,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-    
+
       # Install npm dependencies, cache them correctly and run all Cypress tests
       - name: Cypress tests
         uses: cypress-io/github-action@v6
         with:
           working-directory: ./frontend #Explicitly set the working directory to /frontend for this step.
-          config: baseUrl=${{ secrets.CYPRESS_BASE_URL }}
+          config: baseUrl=${{ secrets.CYPRESS_BASE_URL }} #Set production website URL
           browser: chrome
