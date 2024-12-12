@@ -4,6 +4,10 @@ on:
   push:
     branches: ['master']
 
+env:
+  S3_BUCKET_NAME: 'jt-resume-front-end'
+  AWS_REGION: 'us-west-2'
+
 jobs:
   build-deploy:
     name: Build code and deploy
@@ -19,11 +23,11 @@ jobs:
           node-version: ${{ secrets.NODE_VERSION}}
 
       - name: Install Dependencies
-        working-directory: ./frontend #Explicitly set the working directory to /frontend for this step.
+        working-directory: ./frontend # Explicitly set the working directory to /frontend for this step.
         run: npm install
 
       - name: Build the React Front-End
-        working-directory: ./frontend #Explicitly set the working directory to /frontend for this step.
+        working-directory: ./frontend # Explicitly set the working directory to /frontend for this step.
         run: npm run build
 
       - name: Configure AWS Credentials
@@ -31,30 +35,30 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy to AWS S3
-        working-directory: ./frontend #Explicitly set the working directory to /frontend for this step.
-        run: aws s3 sync ./dist s3://jt-resume-front-end --delete --follow-symlinks --acl private --exclude '.git/*'
+        working-directory: ./frontend # Explicitly set the working directory to /frontend for this step.
+        run: aws s3 sync ./dist s3://${{ env.S3_BUCKET_NAME }} --delete --follow-symlinks --acl private --exclude '.git/*'
 
   cloudfront-invalidation:
     name: Invalidate CloudFront once deploy
-    needs: build-deploy #Identify 'build-deploy' job that must complete successfully before this job will run
+    needs: build-deploy # Identify 'build-deploy' job that must complete successfully before this job will run
     runs-on: ubuntu-latest
 
     steps:
       - name: Invalidate CloudFront
-        uses: chetan/invalidate-cloudfront-action@v2 #Marketplace action
+        uses: chetan/invalidate-cloudfront-action@v2 # Marketplace action
         env:
           DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
           PATHS: '/*'
-          AWS_REGION: 'us-west-2'
+          AWS_REGION: ${{ env.AWS_REGION }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
   cypress-run:
     name: Perform E2E test against the deployed website
-    needs: cloudfront-invalidation #Identify 'cloudfront-invalidation' job that must complete successfully before this job will run
+    needs: cloudfront-invalidation # Identify 'cloudfront-invalidation' job that must complete successfully before this job will run
     runs-on: ubuntu-latest
 
     steps:
@@ -65,6 +69,6 @@ jobs:
       - name: Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          working-directory: ./frontend #Explicitly set the working directory to /frontend for this step.
-          config: baseUrl=${{ secrets.CYPRESS_BASE_URL }} #Set production website URL
+          working-directory: ./frontend # Explicitly set the working directory to /frontend for this step.
+          config: baseUrl=${{ secrets.CYPRESS_BASE_URL }} # Set production website URL
           browser: chrome
