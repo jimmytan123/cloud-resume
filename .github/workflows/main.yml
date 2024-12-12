@@ -51,6 +51,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }} # use OIDC
+          aws-region: ${{ env.AWS_REGION }}
+
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2 # Marketplace action
         env:
