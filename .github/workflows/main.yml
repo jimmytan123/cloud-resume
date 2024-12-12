@@ -35,7 +35,7 @@ jobs:
         working-directory: ./frontend # Explicitly set the working directory to /frontend for this step.
         run: npm run build
 
-      - name: Configure AWS Credentials
+      - name: Configure AWS Credentials with OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }} # use OIDC
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Configure AWS Credentials
+      - name: Configure AWS Credentials with OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }} # use OIDC
@@ -63,8 +63,6 @@ jobs:
           DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
           PATHS: '/*'
           AWS_REGION: ${{ env.AWS_REGION }}
-          # AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          # AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
   cypress-run:
     name: Perform E2E test against the deployed website
