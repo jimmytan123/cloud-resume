@@ -9,6 +9,6 @@ export default defineConfig({
   },
   env: {
     API_URL:
-      'https://bbmkuv7n53.execute-api.us-west-2.amazonaws.com/dev/resume', // API URL
+      'https://n90ufux0ec.execute-api.us-west-2.amazonaws.com/test/update-view-count', // API URL
   },
 });
