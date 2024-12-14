@@ -6,7 +6,7 @@ describe('Cloud Resume E2E Test', () => {
   });
 
   it('fetches and displays the correct view count from the API', () => {
-    // API call mock
+    // API call mock - intercept a server request
     cy.intercept('POST', Cypress.env('API_URL'), {
       statusCode: 200,
       body: { view_count: 1024 },
@@ -22,7 +22,7 @@ describe('Cloud Resume E2E Test', () => {
   });
 
   it('displays the error message if the API request fails', () => {
-    // API call mock
+    // API call mock - intercept a server request
     cy.intercept('POST', Cypress.env('API_URL'), {
       statusCode: 500,
     }).as('apiError'); // and assign an alias
@@ -42,7 +42,7 @@ describe('Cloud Resume E2E Test', () => {
   });
 
   it('display the loading message when fetching the view count', () => {
-    // API call mock
+    // API call mock - intercept a server request
     cy.intercept('POST', Cypress.env('API_URL'), (req) => {
       req.reply({
         statusCode: 200,
