@@ -10,7 +10,7 @@ const Resume = () => {
     queryKey: ['viewCount'],
     queryFn: async () => {
       const response = await fetch(
-        'https://n90ufux0ec.execute-api.us-west-2.amazonaws.com/test/update-view-count',
+        'https://unmxrkwjyf.execute-api.us-west-2.amazonaws.com/test/update-view-count',
         { method: 'POST' }
       );
       const data = await response.json();
