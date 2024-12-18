@@ -107,7 +107,7 @@ const Resume = () => {
         </div>
         <div className="skills__group">
           <h4>Tools & Platforms:</h4>
-          <p>Git, GitHub, GitLab, Stripe, AWS, Mixpanel, Agile (Jira)</p>
+          <p>Git, AWS, Stripe, Mixpanel, Terraform</p>
         </div>
       </div>
       <div className="experience section-container">
@@ -134,10 +134,9 @@ const Resume = () => {
               </li>
               <li>
                 Integrated Stripe as a new payment provider for a
-                subscription-based healthcare web app, collaborating closely
-                with a senior backend developer. This enhancement streamlined
-                the payment process, resulting in a 30% boost in sales and a
-                decrease in payment-related support tickets.
+                subscription-based healthcare web app. This enhancement
+                streamlined the payment process, resulting in a 30% boost in
+                sales and a decrease in payment-related support tickets.
               </li>
               <li>
                 Migrated an AngularJS-based B2B web app to Angular, enhancing
@@ -191,6 +190,35 @@ const Resume = () => {
         <h3 className="section-title uppercase">Projects</h3>
         <div className="projects__group">
           <h4>
+            AWS Cloud Resume | Serverless Web Application
+            <a href="https://resume.jimtan.ca/" target="__blank">
+              <FaExternalLinkSquareAlt />
+            </a>
+          </h4>
+          <p className="small-text">
+            AWS Lambda, API Gateway, DynamoDB, S3, CloudFront, Route 53,
+            Terraform, React, Cypress
+          </p>
+          <ul>
+            <li>
+              Built a serverless resume website featuring CI/CD pipelines using
+              GitHub Actions for automated deployment.
+            </li>
+            <li>
+              Integrated Cypress end-to-end testing into the workflow to ensure
+              application reliability.
+            </li>
+            <li>
+              Leveraged Lambda, DynamoDB and API Gateway to track view counts.
+            </li>
+            <li>
+              Used Terraform for infrastructure as code, managing AWS resources
+              efficiently.
+            </li>
+          </ul>
+        </div>
+        <div className="projects__group">
+          <h4>
             JobJourney Job Tracker | Full-Stack MERN Application
             <a href="https://job-journey-5vos.onrender.com/" target="__blank">
               <FaExternalLinkSquareAlt />
@@ -206,30 +234,18 @@ const Resume = () => {
               efficiently manage, update and track their job applications.
             </li>
             <li>
-              Implemented user authentication with HTTP-only JWT tokens,
-              ensuring secure login, registration, and demo user modes.
-              Integrated an admin role for managing user data and application
-              records.
+              Designed secure authentication with HTTP-only JWT tokens for
+              login, registration, and demo user modes, while implementing an
+              admin role for advanced data management.
             </li>
             <li>
-              Incorporated a dropdown filter for easy job sorting, and
-              pagination for seamless navigation through job lists, ensuring a
-              smooth user experience.
+              Enabled intuitive job sorting with dropdown filters, pagination
+              for seamless navigation, and day/night mode toggle with local
+              storage to enhance user experience.
             </li>
             <li>
-              Developed a day/night mode toggle with local storage to remember
-              user preferences, providing an optimized user experience across
-              sessions.
-            </li>
-            <li>
-              Created monthly charts using Recharts to visually represent the
-              number of jobs added, giving users insightful metrics on their job
-              search progress.
-            </li>
-            <li>
-              Ensured robust data integrity by implementing both front-end and
-              backend validation for user inputs, enhancing overall application
-              security and reliability.
+              Ensured data integrity and security with thorough front-end and
+              back-end validation, improving reliability.
             </li>
           </ul>
         </div>
@@ -248,12 +264,14 @@ const Resume = () => {
           </p>
           <ul>
             <li>
-              Server-side rendering food ordering app with Next.js, Redux, and
-              MongoDB Atlas.
+              Built a responsive food ordering app with Next.js, optimizing
+              performance through server-side rendering and static site
+              generation techniques.
             </li>
-            <li>Implemented a cart state management system using Redux.</li>
             <li>
-              Established API routes within Next.js for RESTApi communication.
+              Implemented a cart state management system with Redux for dynamic
+              user interactions and optimized database queries through API
+              endpoints.
             </li>
           </ul>
         </div>
