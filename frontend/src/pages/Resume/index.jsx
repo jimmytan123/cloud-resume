@@ -103,11 +103,13 @@ const Resume = () => {
         </div>
         <div className="skills__group">
           <h4>Backend & Databases:</h4>
-          <p>Node.js, Express, MongoDB, MySQL</p>
+          <p>Node.js, Express(REST APIs, MVC), MongoDB, PostgreSQL, MySQL</p>
         </div>
         <div className="skills__group">
           <h4>Tools & Platforms:</h4>
-          <p>Git, AWS, Stripe, Mixpanel, Terraform</p>
+          <p>
+            Git, AWS, Stripe, Mixpanel, Postman, Playwright, Cypress, Terraform
+          </p>
         </div>
       </div>
       <div className="experience section-container">
